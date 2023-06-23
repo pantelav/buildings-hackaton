@@ -1,4 +1,5 @@
 export interface ITechUsage {
   name: string,
-  value: number
+  value: number,
+  img: string
 }

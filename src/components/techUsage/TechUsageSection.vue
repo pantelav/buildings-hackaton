@@ -3,7 +3,7 @@
     <p class="section__title">Задействование техники</p>
     <div class="card">
       <div class="graph">
-        <TechUsageItem v-for="item in data" :name="item.name" :value="item.value" />
+        <TechUsageItem v-for="item in data" :name="item.name" :value="item.value" :img="item.img" />
       </div>
       <div class="stats">
         <div class="title">ОБЩАЯ ЗАЙДЕСТВОВАННОСТЬ</div>
@@ -18,27 +18,33 @@
 <script setup lang='ts'>
 import TechUsageItem from './TechUsageItem.vue';
 import type { ITechUsage } from './techUsageModel';
+import { excavator, bulldozer, grader, steamroller, truck } from 'src/assets';
 
 const data: ITechUsage[] = [
   {
     name: "Погрузчики",
-    value: 35
+    value: 35,
+    img: truck
   },
   {
     name: "Экскаваторы",
-    value: 43
+    value: 43,
+    img: excavator
   },
   {
     name: "Бульдозеры",
-    value: 75
+    value: 75,
+    img: bulldozer
   },
   {
     name: "Катки",
-    value: 50
+    value: 50,
+    img: steamroller
   },
   {
     name: "Автогрейдеры",
-    value: 80
+    value: 80,
+    img: grader
   },
 ]
 </script>

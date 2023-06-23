@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="round gradient">
-      <img :src="ok" alt="icon">
+      <img :src="props.img" alt="icon" class="img">
     </div>
     <div class="info">
       <div class="text">
@@ -16,16 +16,23 @@
 </template>
 
 <script setup lang='ts'>
-import { ok } from 'src/assets';
 import type { ITechUsage } from './techUsageModel';
 
 const props = defineProps<ITechUsage>()
+
+console.log(props.img);
+
 </script>
 
 <style scoped lang='scss'>
 .item {
   display: flex;
   gap: 20px;
+}
+
+.img {
+  width: 35px;
+  height: 35px;
 }
 
 .round {

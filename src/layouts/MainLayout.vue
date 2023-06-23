@@ -4,7 +4,7 @@
     <q-header elevated class="bg-primary text-white header">
       <div class="header__container _container">
         <div class="left">
-          <div class="logo" @click="$router.push('/')"><img :src="logo" class="logo-img" />Копатель онлайн</div>
+          <div class="logo" @click="$router.push('/')"><img :src="logo" class="logo-img" />Нетрис AI</div>
           <nav class="nav">
             <router-link to="/">
               <img :src="home" alt="">

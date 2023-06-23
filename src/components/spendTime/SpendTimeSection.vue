@@ -13,23 +13,23 @@ import type { ISpendTime } from './spendTimeModel';
 
 const data: ISpendTime[] = [
   {
-    name: 'Залипуха',
+    name: 'Инфо',
     time: 52
   },
   {
-    name: 'Залипуха',
+    name: 'Инфо',
     time: 34
   },
   {
-    name: 'Залипуха',
+    name: 'Инфо',
     time: 28
   },
   {
-    name: 'Залипуха',
+    name: 'Инфо',
     time: 19
   },
   {
-    name: 'Залипуха',
+    name: 'Инфо',
     time: 72
   },
 ]
