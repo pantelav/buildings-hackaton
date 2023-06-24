@@ -11,7 +11,7 @@
           <div class="video_header gradient">
             <div class="title">Список видео</div>
             <div class="uploader">
-              <q-btn color="secondary" icon="upload" label="Добавить файлы" @click="clickInput" :loading="true"/>
+              <q-btn color="secondary" icon="upload" label="Добавить файлы" @click="clickInput" :loading="loading"/>
               <input class="input-file" ref="fileInput" type="file" name="" id="" accept="video/mp4,video/x-m4v,video/*"
                 @change="uploadFile">
             </div>
