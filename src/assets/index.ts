@@ -19,6 +19,9 @@ import excavator from 'src/assets/img/tech/excavator.png'
 import grader from 'src/assets/img/tech/grader.png'
 import steamroller from 'src/assets/img/tech/steamroller.png'
 import truck from 'src/assets/img/tech/truck.png'
+import crane from 'src/assets/img/tech/crane.png'
+import bigtruck from 'src/assets/img/tech/bigtruck.png'
+import gear from 'src/assets/img/tech/gear.png'
 
 export {
   building,
@@ -39,4 +42,7 @@ export {
   grader,
   steamroller,
   truck,
+  crane,
+  bigtruck,
+  gear
 }

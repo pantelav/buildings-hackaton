@@ -1,5 +1,5 @@
 <template>
-  <h1 class="title">{{ buildingInfo?.city }}, {{ buildingInfo?.street }}</h1>
+  <h1 class="title">{{ buildingInfo?.name }}, {{ buildingInfo?.city }}, {{ buildingInfo?.street }}</h1>
   <div class="video-grid">
     <div v-if="videos?.length == 0" class="empty">Добавить файлы</div>
     <q-video :ratio="16 / 9" :src="videoSrc" v-else />

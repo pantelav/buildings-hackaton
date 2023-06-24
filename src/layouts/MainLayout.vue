@@ -12,7 +12,7 @@
               <img :src="arrow" alt="">
             </router-link>
             <router-link to="/tech">
-              <img :src="techIcon" alt="">
+              <img :src="gear" alt="" width="18">
               <p>Техника</p>
               <img :src="arrow" alt="">
             </router-link>
@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { home, docs, techIcon, objects, arrow, logo } from 'src/assets'
+import { home, docs, techIcon, objects, arrow, logo, gear } from 'src/assets'
 </script>
 
 <style scoped lang="scss">

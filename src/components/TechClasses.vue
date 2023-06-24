@@ -2,15 +2,23 @@
   <section>
     <p class="section__title">Классы техники на объекте</p>
     <div class="card">
+
       <div v-if="!editMode">
         <q-btn label="Добавить класс" color="primary" @click="editMode = true" />
         <div class="items__container">
-          <div class="item" v-for="item in building?.techniques_classes">
-            <p>{{ item.name }}</p>
+          <q-spinner color="primary" size="3em" class="spinner" v-if="loading"/>
+          <div class="item" v-for="item in building?.techniques_classes" v-else>
+            <div class="item__title">
+              <div class="round gradient">
+                <img :src="getIcon(item.type)" alt="icon" class="img">
+              </div>
+              <p>{{ item.name }}</p>
+            </div>
             <q-btn icon="delete" round color="negative" @click="deleteClass(item.id)" />
           </div>
         </div>
       </div>
+
       <div class="editor" v-else>
         <p class="editor__title">Создание класса</p>
         <div class="editor__container">
@@ -33,7 +41,8 @@ import { api } from 'src/boot/axios';
 import { endpoints } from 'src/constants/endpoints';
 import { ref, reactive, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import type { IBuilding } from 'src/components/buildings/buildingModel'
+import { excavator, bulldozer, gear, bigtruck, crane } from 'src/assets';
+import type { IBuilding, IClasses } from 'src/components/buildings/buildingModel'
 const route = useRoute()
 const id = route.params.id
 
@@ -88,6 +97,14 @@ async function deleteClass (techId: string) {
     loading.value = false
   }
 }
+
+function getIcon (type: IClasses['type']) {
+  if (type === 0) return gear
+  if (type === 1) return bigtruck
+  if (type === 2) return crane
+  if (type === 3) return excavator
+  if (type === 4) return bulldozer
+}
 </script>
 
 <style scoped lang='scss'>
@@ -113,6 +130,26 @@ async function deleteClass (techId: string) {
   }
 }
 
+.item__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.img {
+  width: 35px;
+  height: 35px;
+}
+
+.round {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+}
+
 .editor__title {
   font-size: 24px;
 }
@@ -128,5 +165,9 @@ async function deleteClass (techId: string) {
   display: flex;
   justify-content: flex-end;
   gap: 20px;
+}
+
+.spinner {
+  margin-top: 20px;
 }
 </style>

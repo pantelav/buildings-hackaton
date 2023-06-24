@@ -14,7 +14,8 @@ export interface IClasses {
   name: string,
   description: string,
   clip_description: string,
-  video_id: string | null
+  video_id: string | null,
+  type: 0 | 1 | 2 | 3 | 4
 }
 
 export interface IBuilding {
