@@ -1,6 +1,8 @@
 <template>
   <div class="building">
-    <p class="name">{{ data.name }}</p>
+    <div class="name">
+      {{ data.name }}
+    </div>
     <p class="address">{{ data.city }}, {{ data.street }}</p>
     <button class="button" @click="$router.push('/building/' + data.id)"><img :src="arrow" /> Смотреть</button>
     <q-btn flat round color="negative" icon="delete" class="delete" @click="deleteObject" />
@@ -65,6 +67,10 @@ function deleteObject () {
   font-size: 28px;
   font-weight: 600;
   text-shadow: 1px 1px 2px #fff;
+  align-self: flex-start;
+  background: #ffffffcd;
+  padding: 0 10px;
+  border-radius: 15px;
 }
 
 .address {

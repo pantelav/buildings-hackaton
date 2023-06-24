@@ -11,7 +11,7 @@
               <p>Главная</p>
               <img :src="arrow" alt="">
             </router-link>
-            <router-link to="/">
+            <router-link to="/tech">
               <img :src="techIcon" alt="">
               <p>Техника</p>
               <img :src="arrow" alt="">

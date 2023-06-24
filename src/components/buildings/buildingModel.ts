@@ -1,3 +1,22 @@
+export interface IVideo {
+  id: string,
+  title_image_path: string | null,
+  filename: string,
+  description: string,
+  name: string,
+  building_id: string,
+  creation_datetime: number
+}
+
+export interface IClasses {
+  id: string,
+  building_id: string,
+  name: string,
+  description: string,
+  clip_description: string,
+  video_id: string | null
+}
+
 export interface IBuilding {
   id: string,
   name: string,
@@ -6,15 +25,8 @@ export interface IBuilding {
   city: string,
   street: string,
   title_image_path: string | null,
-  videos: {
-    id: string,
-    title_image_path: string | null,
-    filename: string,
-    description: string,
-    name: string,
-    building_id: string,
-    creation_datetime: number
-  }[]
+  videos: IVideo[],
+  techniques_classes: IClasses[]
 }
 
 export interface IResponseBuilding {

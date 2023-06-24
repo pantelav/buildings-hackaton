@@ -81,3 +81,30 @@ a {
   color: $primary;
   font-size: 16px;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-column-gap: 30px;
+  grid-row-gap: 0px;
+  grid-template-areas:
+    "grid-1 grid-2"
+    "grid-3 grid-4";
+
+  .gird-1 {
+    grid-area: grid-1;
+  }
+
+  .gird-2 {
+    grid-area: grid-2;
+  }
+
+  .gird-3 {
+    grid-area: grid-3;
+  }
+
+  .gird-4 {
+    grid-area: grid-4;
+  }
+}

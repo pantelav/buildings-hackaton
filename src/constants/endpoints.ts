@@ -1,5 +1,6 @@
 export const endpoints = {
   building: 'building',
   video: 'video',
-  videos: 'videos'
+  videos: 'videos',
+  tech: 'technic'
 }
