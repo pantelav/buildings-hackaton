@@ -3,7 +3,7 @@
     <section>
       <h1 class="title">{{ buildingInfo?.city }}, {{ buildingInfo?.street }}</h1>
       <div class="video-grid">
-        <div v-if="videos?.length == 0" class="empty">Добавьтие видео</div>
+        <div v-if="videos?.length == 0" class="empty">Добавить файлы</div>
         <q-video :ratio="16 / 9" src="https://drive.google.com/file/d/1rY2ytZFKIdkIknZWylOUVFgN6_6ABwj2/view?usp=sharing"
           v-else />
 
@@ -11,7 +11,7 @@
           <div class="video_header gradient">
             <div class="title">Список видео</div>
             <div class="uploader">
-              <q-btn color="secondary" icon="upload" label="Добавить файлы" @click="clickInput" :loading="loading"/>
+              <q-btn color="secondary" icon="upload" label="Добавить файлы" @click="clickInput" :loading="true"/>
               <input class="input-file" ref="fileInput" type="file" name="" id="" accept="video/mp4,video/x-m4v,video/*"
                 @change="uploadFile">
             </div>
