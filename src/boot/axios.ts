@@ -21,7 +21,6 @@ if (import.meta.env.DEV) {
 } else {
   URL = '/api'
 }
-// te
 
 const api = axios.create({ baseURL: URL, headers: {
   'Access-Control-Allow-Origin': '*',

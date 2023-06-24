@@ -14,5 +14,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            touch text.txt
+            cd ./workspace/hacks/buildings-hackaton
+            git fetch
+            git reset --hard HEAD
+            git merge origin/main
+            npm run build
             exit
