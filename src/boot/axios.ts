@@ -13,7 +13,16 @@ declare module '@vue/runtime-core' {
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const api = axios.create({ baseURL: 'http://109.248.175.75:8000/', headers: {
+
+console.log(import.meta.env.DEV);
+let URL
+if (import.meta.env.DEV) {
+  URL = 'http://109.248.175.75/api'
+} else {
+  URL = '/api'
+}
+
+const api = axios.create({ baseURL: URL, headers: {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': '*',
 } });

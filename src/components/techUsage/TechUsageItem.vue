@@ -20,8 +20,6 @@ import type { ITechUsage } from './techUsageModel';
 
 const props = defineProps<ITechUsage>()
 
-console.log(props.img);
-
 </script>
 
 <style scoped lang='scss'>
