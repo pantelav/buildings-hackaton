@@ -3,7 +3,7 @@
   <div class="video-grid">
     <div v-if="videos?.length == 0" class="empty">Добавить файлы</div>
     <q-video :ratio="16 / 9" :src="videoSrc" v-else />
-    <div class="videos card">
+    <div class="videos card" ref="dropZoneRef">
       <div class="video_header gradient">
         <div class="title">Список видео</div>
         <div class="uploader">
@@ -16,6 +16,10 @@
         <VideoItem v-for="(item, idx) in videos" :name="item.name" :idx="idx" :is-active="idx === mainVideoIndex"
           @invoke="setActiveVideo" />
       </div>
+      <div class="dropzone" v-if="isOverDropZone">
+        <div>Перетащите файл сюда</div>
+        <q-icon name="upload" />
+      </div>
     </div>
 
   </div>
@@ -24,12 +28,14 @@
 <script setup lang='ts'>
 import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router';
+import { useDropZone } from '@vueuse/core';
 import { api } from 'src/boot/axios';
 import { endpoints } from 'src/constants/endpoints';
 import { IBuilding } from 'src/components/buildings/buildingModel';
 import VideoItem from 'src/components/video/VideoItem.vue'
 
 const route = useRoute()
+const dropZoneRef = ref<HTMLDivElement | null>(null)
 const buildingInfo = ref<IBuilding | null>(null)
 const id = route.params.id
 const videos = ref()
@@ -44,6 +50,8 @@ const fileInput = ref<HTMLInputElement | null>(null)
 onMounted(async () => {
   await fetchData()
 })
+
+const { isOverDropZone } = useDropZone(dropZoneRef, dragNdrop)
 
 async function fetchData () {
   const resBuild = await api(endpoints.building + '/' + id)
@@ -89,6 +97,23 @@ function getViedoSrc () {
 function clickInput () {
   fileInput.value?.click()
 }
+
+async function dragNdrop (file: File[] | null) {
+  if (!file) return
+  loading.value = true
+  try {
+    const video = file[0]
+    const formData = new FormData()
+    formData.append('building_id', id as string)
+    formData.append('file', video)
+    await api.post(endpoints.video + '/upload', formData)
+    await fetchData()
+  } catch (error) {
+
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
 <style scoped lang='scss'>
@@ -108,6 +133,7 @@ function clickInput () {
 }
 
 .videos {
+  position: relative;
   border: 1px solid rgba(128, 128, 128, 0.233);
   min-height: 400px;
   padding: 0;
@@ -134,5 +160,22 @@ function clickInput () {
 
 .input-file {
   display: none;
+}
+
+.dropzone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: inherit;
+  background: #249ae35d;
+  color: $dark;
+  font-size: 30px;
+  font-weight: 600;
 }
 </style>

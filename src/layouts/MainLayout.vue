@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { home, docs, techIcon, objects, arrow, logo, gear } from 'src/assets'
+import { home, docs, objects, arrow, logo, gear } from 'src/assets'
 </script>
 
 <style scoped lang="scss">

@@ -6,13 +6,13 @@
       <div v-if="!editMode">
         <q-btn label="Добавить класс" color="primary" @click="editMode = true" />
         <div class="items__container">
-          <q-spinner color="primary" size="3em" class="spinner" v-if="loading"/>
+          <q-spinner color="primary" size="3em" class="spinner" v-if="loading" />
           <div class="item" v-for="item in building?.techniques_classes" v-else>
             <div class="item__title">
               <div class="round gradient">
                 <img :src="getIcon(item.type)" alt="icon" class="img">
               </div>
-              <p>{{ item.name }}</p>
+              <p class="classname">{{ item.name }}</p>
             </div>
             <q-btn icon="delete" round color="negative" @click="deleteClass(item.id)" />
           </div>
@@ -170,4 +170,5 @@ function getIcon (type: IClasses['type']) {
 .spinner {
   margin-top: 20px;
 }
+
 </style>
