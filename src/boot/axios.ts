@@ -14,7 +14,6 @@ declare module '@vue/runtime-core' {
 // "export default () => {}" function below (which runs individually
 // for each client)
 
-console.log(import.meta.env.DEV);
 let URL
 if (import.meta.env.DEV) {
   URL = 'http://109.248.175.75/api'
