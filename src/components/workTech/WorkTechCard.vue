@@ -1,16 +1,18 @@
 <template>
   <div class="card">
     <img :src="tech" alt="icon">
-    <p class="title">{{ props.name }}</p>
-    <p class="subtitle">{{ props.count }} ЕДИНИЦ</p>
+    <p class="title">{{ props.data.name }}</p>
+    <!-- <p class="subtitle">{{ props.count }} ЕДИНИЦ</p> -->
   </div>
 </template>
 
 <script setup lang='ts'>
 import { tech } from 'src/assets';
-import type { IWorkTech } from './workTechModel';
+import { ITechnique } from 'src/types/technique';
 
-const props = defineProps<IWorkTech>()
+const props = defineProps<{
+  data: ITechnique
+}>()
 </script>
 
 <style scoped lang='scss'>

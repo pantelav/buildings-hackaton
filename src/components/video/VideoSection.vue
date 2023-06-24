@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router';
 import { useDropZone } from '@vueuse/core';
 import { api } from 'src/boot/axios';
@@ -38,13 +38,16 @@ import { endpoints } from 'src/constants/endpoints';
 import { IBuilding } from 'src/components/buildings/buildingModel';
 import VideoItem from 'src/components/video/VideoItem.vue'
 import { AxiosRequestConfig } from 'axios';
+import { useVideoStore } from 'src/stores/videoStore';
+import { IVideo } from 'src/types/video';
 
 const route = useRoute()
+const store = useVideoStore()
 const dropZoneRef = ref<HTMLDivElement | null>(null)
 const buildingInfo = ref<IBuilding | null>(null)
 const id = route.params.id
 const videos = ref()
-const mainVideo = ref()
+const mainVideo = ref<IVideo>()
 const mainVideoIndex = ref(0)
 const loading = ref(false)
 const loadProgress = ref(0)
@@ -70,6 +73,7 @@ async function fetchData () {
   buildingInfo.value = resBuild.data.data
   if (buildingInfo.value?.videos && buildingInfo.value?.videos.length > 0) {
     mainVideo.value = buildingInfo.value.videos[mainVideoIndex.value]
+    store.getVideo(mainVideo.value.id)
     videos.value = buildingInfo.value.videos
     getViedoSrc()
   }
@@ -104,6 +108,7 @@ function getViedoSrc () {
   // @ts-ignore
   mainVideo.value = buildingInfo.value.videos[mainVideoIndex.value]
   videoSrc.value = baseURL + mainVideo.value.filename
+  store.getVideo(mainVideo.value.id)
 }
 
 function clickInput () {

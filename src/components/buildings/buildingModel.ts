@@ -5,7 +5,8 @@ export interface IVideo {
   description: string,
   name: string,
   building_id: string,
-  creation_datetime: number
+  creation_datetime: number,
+  is_ready: 0 | 1
 }
 
 export interface IClasses {
