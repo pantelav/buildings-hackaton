@@ -27,7 +27,11 @@ defineEmits(['invoke'])
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  transition: all .3s;
 
+  &:hover:not(.active) {
+    background: rgb(209, 237, 253);
+  }
 }
 
 .active {

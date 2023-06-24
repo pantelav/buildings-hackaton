@@ -6,7 +6,7 @@
         <div v-if="videos?.length == 0" class="empty">Добавить файлы</div>
         <q-video :ratio="16 / 9" :src="videoSrc" v-else />
 
-        <div class="videos">
+        <div class="videos card">
           <div class="video_header gradient">
             <div class="title">Список видео</div>
             <div class="uploader">
@@ -42,7 +42,6 @@ const mainVideo = ref()
 const mainVideoIndex = ref(0)
 const loading = ref(false)
 
-// const videoSrc = ref('http://109.248.175.75/api/videos/')
 const videoSrc = ref('')
 
 const fileInput = ref<HTMLInputElement | null>(null)
@@ -86,7 +85,7 @@ function setActiveVideo (idx: number) {
 
 function getViedoSrc () {
   if (!mainVideo.value) return
-  const baseURL = 'http://109.248.175.75/api/videos/'
+  const baseURL = 'http://109.248.175.75/api/video/'
   // @ts-ignore
   mainVideo.value = buildingInfo.value.videos[mainVideoIndex.value]
   videoSrc.value = baseURL + mainVideo.value.filename
@@ -115,9 +114,9 @@ function clickInput () {
 }
 
 .videos {
-  border: 1px solid gray;
-  border-radius: 8px;
+  border: 1px solid rgba(128, 128, 128, 0.505);
   min-height: 400px;
+  padding: 0;
 
   .video_header {
     padding: 0 20px;
@@ -137,7 +136,6 @@ function clickInput () {
 .video_container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .input-file {
