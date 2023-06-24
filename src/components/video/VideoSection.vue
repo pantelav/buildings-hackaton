@@ -11,6 +11,10 @@
           <input class="input-file" ref="fileInput" type="file" name="" id="" accept="video/mp4,video/x-m4v,video/*"
             @change="uploadFile">
         </div>
+        <div class="progress" v-if="loading">
+          <p>{{ loadProgress }} %</p>
+          <q-linear-progress :value="loadProgress / 100" color="positive" :animation-speed="100" />
+        </div>
       </div>
       <div class="video_container">
         <VideoItem v-for="(item, idx) in videos" :name="item.name" :idx="idx" :is-active="idx === mainVideoIndex"
@@ -33,6 +37,7 @@ import { api } from 'src/boot/axios';
 import { endpoints } from 'src/constants/endpoints';
 import { IBuilding } from 'src/components/buildings/buildingModel';
 import VideoItem from 'src/components/video/VideoItem.vue'
+import { AxiosRequestConfig } from 'axios';
 
 const route = useRoute()
 const dropZoneRef = ref<HTMLDivElement | null>(null)
@@ -42,10 +47,17 @@ const videos = ref()
 const mainVideo = ref()
 const mainVideoIndex = ref(0)
 const loading = ref(false)
+const loadProgress = ref(0)
 
 const videoSrc = ref('')
 
 const fileInput = ref<HTMLInputElement | null>(null)
+
+const axiosConfig: AxiosRequestConfig = {
+  onUploadProgress (progressEvent) {
+    loadProgress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+  },
+}
 
 onMounted(async () => {
   await fetchData()
@@ -71,7 +83,7 @@ async function uploadFile () {
     const formData = new FormData()
     formData.append('building_id', id as string)
     formData.append('file', video)
-    await api.post(endpoints.video + '/upload', formData)
+    await api.post(endpoints.video + '/upload', formData, axiosConfig)
     await fetchData()
   } catch (error) {
 
@@ -106,7 +118,7 @@ async function dragNdrop (file: File[] | null) {
     const formData = new FormData()
     formData.append('building_id', id as string)
     formData.append('file', video)
-    await api.post(endpoints.video + '/upload', formData)
+    await api.post(endpoints.video + '/upload', formData, axiosConfig)
     await fetchData()
   } catch (error) {
 
@@ -136,9 +148,13 @@ async function dragNdrop (file: File[] | null) {
   position: relative;
   border: 1px solid rgba(128, 128, 128, 0.233);
   min-height: 400px;
+  max-height: 514px;
   padding: 0;
 
   .video_header {
+    position: sticky;
+    top: 0;
+    border-top-left-radius: inherit;
     padding: 0 20px;
     width: 100%;
     height: 80px;
@@ -150,6 +166,17 @@ async function dragNdrop (file: File[] | null) {
     .title {
       padding: 0;
     }
+  }
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  p {
+    padding-left: 20px;
   }
 }
 
