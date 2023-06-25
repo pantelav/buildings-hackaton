@@ -122,7 +122,7 @@ function getIcon (type: IClasses['type']) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 24px;
+  // font-size: 24px;
   height: 60px;
 
   &:first-child {

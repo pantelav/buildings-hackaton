@@ -2,6 +2,7 @@
   <main class="_container main">
     <section>
       <VideoSection />
+      <q-btn icon="download" label="Скачать json с данными" color="primary" class="download"/>
       <div class="grid">
         <EventsSection class="grid-1" />
         <WorkTechSection class="grid-2" />
@@ -30,7 +31,11 @@ import { ref, onMounted, computed } from 'vue'
   padding-bottom: 40px;
 }
 
+.download {
+  margin-top: 20px;
+}
+
 .grid {
-  margin-top: 40px;
+  margin-top: 5px;
 }
 </style>
