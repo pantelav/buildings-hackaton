@@ -2,7 +2,6 @@
   <div class="card">
     <img :src="tech" alt="icon">
     <p class="title">{{ props.data.name }}</p>
-    <!-- <p class="subtitle">{{ props.count }} ЕДИНИЦ</p> -->
   </div>
 </template>
 

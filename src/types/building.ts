@@ -1,14 +1,5 @@
+import { IClasses } from './technique'
 import { IVideo } from './video'
-
-export interface IClasses {
-  id: string,
-  building_id: string,
-  name: string,
-  description: string,
-  clip_description: string,
-  video_id: string | null,
-  type: 0 | 1 | 2 | 3 | 4
-}
 
 export interface IBuilding {
   id: string,

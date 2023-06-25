@@ -2,7 +2,12 @@
   <section>
     <p class="section__title">Техника в работе</p>
     <div class="techs">
-      <WorkTechCard v-for="item in videoStore.video?.techniques" :key="item.id" :data="item" />
+      <template v-if="onMain">
+        <WorkTechCard v-for="item in allTechs" :key="item.id" :data="item" v-if="onMain"/>
+      </template>
+      <template v-else>
+        <WorkTechCard v-for="item in videoStore.video?.techniques" :key="item.id" :data="item"/>
+      </template>
     </div>
   </section>
 </template>
@@ -12,43 +17,25 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import WorkTechCard from './WorkTechCard.vue';
 import { useVideoStore } from 'src/stores/videoStore';
-import type { IWorkTech } from './workTechModel';
+import { ITechnique } from 'src/types/technique';
+import { api } from 'src/boot/axios';
+import { endpoints } from 'src/constants/endpoints';
 
 const route = useRoute()
 const pageId = route.params?.id || null
 const videoStore = useVideoStore()
 const onMain = ref(true)
+const allTechs = ref<ITechnique | null>(null)
 
-onMounted(() => {
-  if (pageId) onMain.value = false
+onMounted(async () => {
+  if (pageId) {
+    onMain.value = false
+  } else {
+    const res = await api(endpoints.allTech)
+    allTechs.value = res.data.data
+  }
 })
 
-const techs: IWorkTech[] = [
-  {
-    name: 'Погрузчик SEM 655D',
-    count: 14
-  },
-  {
-    name: 'Автогрейдер SEM922AWD',
-    count: 8
-  },
-  {
-    name: 'Экскаватор CAT336GC',
-    count: 12
-  },
-  {
-    name: 'Экскаватор CAT320',
-    count: 6
-  },
-  {
-    name: 'Каток SEM512',
-    count: 5
-  },
-  {
-    name: 'Бульдозер SEM822D',
-    count: 10
-  },
-]
 </script>
 
 <style scoped lang='scss'>

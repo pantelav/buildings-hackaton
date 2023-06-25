@@ -1,3 +1,4 @@
+import { IClasses } from './../components/buildings/buildingModel';
 import { ITechnique } from './technique';
 export interface IVideo {
   id: string,
@@ -11,5 +12,6 @@ export interface IVideo {
 }
 
 export interface IVideoExact extends IVideo {
-  techniques: ITechnique[]
+  techniques: ITechnique[],
+  techniques_classes: IClasses[]
 }

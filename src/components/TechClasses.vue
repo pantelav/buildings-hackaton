@@ -7,7 +7,7 @@
         <q-btn label="Добавить класс" color="primary" @click="editMode = true" />
         <div class="items__container">
           <q-spinner color="primary" size="3em" class="spinner" v-if="loading" />
-          <div class="item" v-for="item in building?.techniques_classes" v-else>
+          <div class="item" v-for="item in classesStore.currentClasses" v-else>
             <div class="item__title">
               <div class="round gradient">
                 <img :src="getIcon(item.type)" alt="icon" class="img">
@@ -42,9 +42,13 @@ import { endpoints } from 'src/constants/endpoints';
 import { ref, reactive, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { excavator, bulldozer, gear, bigtruck, crane } from 'src/assets';
+import { useVideoStore } from 'src/stores/videoStore';
+import { useClassesStore } from 'src/stores/techincStore';
 import type { IBuilding, IClasses } from 'src/components/buildings/buildingModel'
 const route = useRoute()
 const id = route.params.id
+const videoStore = useVideoStore()
+const classesStore = useClassesStore()
 
 const loading = ref(false)
 const editMode = ref(false)
@@ -54,7 +58,8 @@ const tech = reactive({
   name: '',
   description: '',
   clip_description: '',
-  building_id: id
+  building_id: id,
+  video_id: videoStore.video?.id
 })
 
 onMounted(async () => {
