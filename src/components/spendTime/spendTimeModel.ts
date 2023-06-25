@@ -1,4 +1,5 @@
 export interface ISpendTime {
   name: string,
-  time: number
+  time: number,
+  icon: string
 }

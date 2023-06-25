@@ -2,7 +2,7 @@
   <section>
     <p class="section__title">Затраченные часы</p>
     <div class="cards">
-      <SpendTimeCard v-for="item in data" :name="item.name" :time="item.time" />
+      <SpendTimeCard v-for="item in data" :name="item.name" :time="item.time" :icon="item.icon" />
     </div>
   </section>
 </template>
@@ -13,24 +13,24 @@ import type { ISpendTime } from './spendTimeModel';
 
 const data: ISpendTime[] = [
   {
-    name: 'Инфо',
-    time: 52
+    name: 'Движение',
+    time: 52,
+    icon: 'timeline'
   },
   {
-    name: 'Инфо',
-    time: 34
+    name: 'Простой',
+    time: 34,
+    icon: 'update'
   },
   {
-    name: 'Инфо',
-    time: 28
+    name: 'Работа',
+    time: 28,
+    icon: 'work'
   },
   {
-    name: 'Инфо',
-    time: 19
-  },
-  {
-    name: 'Инфо',
-    time: 72
+    name: 'Другое',
+    time: 4,
+    icon: 'more_horiz'
   },
 ]
 </script>

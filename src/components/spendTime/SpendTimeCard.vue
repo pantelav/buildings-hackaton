@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="img gradient">
-      <img :src="ok" alt="icon" />
+      <q-icon :name="props.icon" color="white" size="2em"/>
     </div>
     <p class="title">{{ props.name }}</p>
     <p class="time">{{ props.time }}</p>
@@ -13,6 +13,9 @@ import type { ISpendTime } from './spendTimeModel'
 import { ok } from 'src/assets';
 
 const props = defineProps<ISpendTime>()
+console.log(props);
+
+
 </script>
 
 <style scoped lang='scss'>
