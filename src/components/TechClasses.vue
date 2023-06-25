@@ -81,9 +81,11 @@ async function fetchData () {
 async function createClass () {
   try {
     loading.value = true
+    tech.video_id = videoStore.video?.id
     await api.post(endpoints.tech, tech)
     editMode.value = false
     await fetchData()
+    await videoStore.getVideo(tech.video_id as string)
   } catch (error) {
 
   } finally {
@@ -122,7 +124,6 @@ function getIcon (type: IClasses['type']) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // font-size: 24px;
   height: 60px;
 
   &:first-child {
