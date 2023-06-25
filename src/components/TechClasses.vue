@@ -4,7 +4,10 @@
     <div class="card">
 
       <div v-if="!editMode">
-        <q-btn label="Добавить класс" color="primary" @click="editMode = true" />
+        <div class="flex">
+          <q-btn label="Добавить класс" color="primary" @click="editMode = true" />
+          <q-btn label="Обработать видео" color="primary" class="activate" />
+        </div>
         <div class="items__container">
           <q-spinner color="primary" size="3em" class="spinner" v-if="loading" />
           <div class="item" v-for="item in classesStore.currentClasses" v-else>
@@ -32,6 +35,7 @@
             :loading="loading" />
         </div>
       </div>
+
     </div>
   </section>
 </template>
@@ -65,6 +69,17 @@ const tech = reactive({
 onMounted(async () => {
   await fetchData()
 })
+
+async function activate () {
+  try {
+    loading.value = true
+    await api(endpoints.video + '/update/' + videoStore.video?.id)
+  } catch (error) {
+
+  } finally {
+    loading.value = false
+  }
+}
 
 async function fetchData () {
   try {
@@ -119,6 +134,15 @@ function getIcon (type: IClasses['type']) {
 .card {
   height: 480px;
   text-align: center;
+  padding-bottom: 5px;
+}
+
+.activate {}
+
+.flex {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 
 .item {
