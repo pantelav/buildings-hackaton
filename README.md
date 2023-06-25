@@ -1,24 +1,20 @@
-# Quasar App (package.json)
+# Хакатон "Цифровой прорыв" frontend (DoberTeam)
 
-A Quasar Project
 
-## Install the dependencies
+## Установка зависимостей
 ```bash
-yarn
-# or
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Запуск dev сервера
 ```bash
-quasar dev
+npm run dev
 ```
 
 
-### Build the app for production
+### Сборка проекта
 ```bash
-quasar build
+npm run build
 ```
+Собранный проект находится в папке dist/spa. Для отображения страниц необходим сервер, который отдает статические файлы из вышеупомянутой директории.
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
