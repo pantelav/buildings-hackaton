@@ -114,6 +114,7 @@ async function deleteClass (techId: string) {
     await api.delete(endpoints.tech + '/' + techId)
     await fetchData()
     await videoStore.getVideo(tech.video_id as string)
+    await classesStore.getClasses(videoStore.video?.id)
   } catch (error) {
 
   } finally {
