@@ -6,7 +6,7 @@
       <div v-if="!editMode">
         <div class="flex">
           <q-btn label="Добавить класс" color="primary" @click="editMode = true" />
-          <q-btn label="Обработать видео" color="primary" class="activate" />
+          <q-btn label="Обработать видео" color="primary" class="activate" @click="activate"/>
         </div>
         <div class="items__container">
           <q-spinner color="primary" size="3em" class="spinner" v-if="loading" />
