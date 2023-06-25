@@ -98,6 +98,7 @@ async function deleteClass (techId: string) {
     loading.value = true
     await api.delete(endpoints.tech + '/' + techId)
     await fetchData()
+    await videoStore.getVideo(tech.video_id as string)
   } catch (error) {
 
   } finally {
@@ -176,5 +177,4 @@ function getIcon (type: IClasses['type']) {
 .spinner {
   margin-top: 20px;
 }
-
 </style>
